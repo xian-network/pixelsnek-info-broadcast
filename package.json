@@ -1,0 +1,23 @@
+{
+  "name": "pixelsnek-info-broadcast",
+  "version": "1.0.0",
+  "description": "an application that posts about new PixelSnek NFTs to socials",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xian-network/pixelsnek-info-broadcast.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "KELs7",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xian-network/pixelsnek-info-broadcast/issues"
+  },
+  "homepage": "https://github.com/xian-network/pixelsnek-info-broadcast#readme"
+}
