@@ -19,5 +19,10 @@
   "bugs": {
     "url": "https://github.com/xian-network/pixelsnek-info-broadcast/issues"
   },
-  "homepage": "https://github.com/xian-network/pixelsnek-info-broadcast#readme"
+  "homepage": "https://github.com/xian-network/pixelsnek-info-broadcast#readme",
+  "dependencies": {
+    "@types/ws": "^8.5.12",
+    "dotenv": "^16.4.5",
+    "ws": "^8.18.0"
+  }
 }
