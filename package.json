@@ -5,6 +5,8 @@
   "type": "module",
   "main": "index.ts",
   "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/index.js",
     "test": "test"
   },
   "repository": {
@@ -23,6 +25,11 @@
   "dependencies": {
     "@types/ws": "^8.5.12",
     "dotenv": "^16.4.5",
-    "ws": "^8.18.0"
+    "twitter-api-v2": "^1.18.1",
+    "ws": "^8.18.0",
+    "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
   }
 }
