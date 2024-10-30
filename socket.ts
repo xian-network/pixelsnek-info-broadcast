@@ -1,9 +1,12 @@
 import WebSocket from 'ws';
-import dotenv from 'dotenv';
+// import * as dotenv from 'dotenv';
+import { process } from './processNodeData.js';
+import { sendTweet } from './x.js';
+import { WEBSOCKET_URL } from './config.js';
 
-dotenv.config();
+// dotenv.config();
 
-const WEBSOCKET_URL = process.env.WEBSOCKET_URL || 'wss://testnet.xian.org/websocket';
+// const WEBSOCKET_URL = process.env.WEBSOCKET_URL || 'wss://testnet.xian.org/websocket';
 
 export const start = () => {
     const socket = new WebSocket(WEBSOCKET_URL);
@@ -15,15 +18,17 @@ export const start = () => {
             method: "subscribe",
             id: 0,
             params: {
-                query: "tm.event='NewBlock'"
+                query: "tm.event='Tx'"
             }
         };
 
         socket.send(JSON.stringify(subscriptionRequest));
     });
 
-    socket.on('message', (data: WebSocket.RawData) => {
-        console.log(data.toString('utf8'));
+    socket.on('message', async (data: WebSocket.RawData) => {
+        const nftUid = process(data.toString('utf8'));
+        const post = `New #NFT Art!\r\nhttps://pixelsnek.xian.org/frames/${nftUid}\r\n\r\n#NFTartist #digitalartist #pixelart`
+        await sendTweet(post);
     });
 
     socket.on('close', () => {
