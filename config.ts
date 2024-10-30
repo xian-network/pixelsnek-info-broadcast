@@ -1,0 +1,1 @@
+export const WEBSOCKET_URL = "wss://testnet.xian.org/websocket";
