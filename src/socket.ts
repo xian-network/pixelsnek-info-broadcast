@@ -2,6 +2,7 @@ import WebSocket from 'ws';
 // import * as dotenv from 'dotenv';
 import { process } from './processNodeData.js';
 import { sendTweet } from './x.js';
+import { sendTelegramMessage } from './telegram.js';
 import { WEBSOCKET_URL } from './config.js';
 
 // dotenv.config();
@@ -29,6 +30,7 @@ export const start = () => {
         const nftUid = process(data.toString('utf8'));
         const post = `New #NFT Art!\r\nhttps://pixelsnek.xian.org/frames/${nftUid}\r\n\r\n#NFTartist #digitalartist #pixelart`
         await sendTweet(post);
+        await sendTelegramMessage(post);
     });
 
     socket.on('close', () => {
