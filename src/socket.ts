@@ -36,12 +36,14 @@ export const start = () => {
             }
             
             const nftUid = process(message);
-            const post = `New #NFT Art!\r\nhttps://pixelsnek.xian.org/frames/${nftUid}\r\n\r\n#NFTartist #digitalartist #pixelart`;
-            const gifPost = `https://pixelsnek.xian.org/gif/${nftUid}.gif`;
-            // await sendTweet(post);
-            console.log("post: ", post);
-            await sendTelegramMessage(post);
-            await sendTelegramMessage(gifPost);
+            if (nftUid) {  // Only proceed if nftUid is not null
+                const post = `New #NFT Art!\r\nhttps://pixelsnek.xian.org/frames/${nftUid}\r\n\r\n#NFTartist #digitalartist #pixelart`;
+                const gifPost = `https://pixelsnek.xian.org/gif/${nftUid}.gif`;
+                // await sendTweet(post);
+                // console.log("post: ", post);
+                await sendTelegramMessage(post);
+                await sendTelegramMessage(gifPost);
+            }
         } catch (error) {
             console.error('Error parsing message:', error);
         }
