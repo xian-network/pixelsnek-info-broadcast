@@ -27,10 +27,24 @@ export const start = () => {
     });
 
     socket.on('message', async (data: WebSocket.RawData) => {
-        const nftUid = process(data.toString('utf8'));
-        const post = `New #NFT Art!\r\nhttps://pixelsnek.xian.org/frames/${nftUid}\r\n\r\n#NFTartist #digitalartist #pixelart`
-        await sendTweet(post);
-        await sendTelegramMessage(post);
+        const message = data.toString('utf8');
+        try {
+            const parsedMessage = JSON.parse(message);
+            // Skip initial subscription confirmation message
+            if (parsedMessage.result && Object.keys(parsedMessage.result).length === 0) {
+                return;
+            }
+            
+            const nftUid = process(message);
+            const post = `New #NFT Art!\r\nhttps://pixelsnek.xian.org/frames/${nftUid}\r\n\r\n#NFTartist #digitalartist #pixelart`;
+            const gifPost = `https://pixelsnek.xian.org/gif/${nftUid}.gif`;
+            // await sendTweet(post);
+            console.log("post: ", post);
+            await sendTelegramMessage(post);
+            await sendTelegramMessage(gifPost);
+        } catch (error) {
+            console.error('Error parsing message:', error);
+        }
     });
 
     socket.on('close', () => {
