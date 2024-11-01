@@ -1,13 +1,8 @@
 import WebSocket from 'ws';
-// import * as dotenv from 'dotenv';
 import { process } from './processNodeData.js';
-import { sendTweet } from './x.js';
+// import { sendTweet } from './x.js';
 import { sendTelegramMessage } from './telegram.js';
 import { WEBSOCKET_URL } from './config.js';
-
-// dotenv.config();
-
-// const WEBSOCKET_URL = process.env.WEBSOCKET_URL || 'wss://testnet.xian.org/websocket';
 
 export const start = () => {
     const socket = new WebSocket(WEBSOCKET_URL);
