@@ -1,6 +1,6 @@
 import WebSocket from 'ws';
 import { process } from './processNodeData.js';
-// import { sendTweet } from './x.js';
+import { sendTweet } from './x.js';
 import { sendTelegramMessage } from './telegram.js';
 import { WEBSOCKET_URL } from './config.js';
 
@@ -32,12 +32,11 @@ export const start = () => {
             
             const nftUid = process(message);
             if (nftUid) {  // Only proceed if nftUid is not null
-                const post = `New #NFT Art!\r\nhttps://pixelsnek.xian.org/frames/${nftUid}\r\n\r\n#NFTartist #digitalartist #pixelart`;
-                const gifPost = `https://pixelsnek.xian.org/gif/${nftUid}.gif`;
-                // await sendTweet(post);
+                const postWithGIF = `New #NFT Art!\r\nGIF: https://pixelsnek.xian.org/gif/${nftUid}.gif\r\n\r\nhttps://pixelsnek.xian.org/frames/${nftUid}\r\n\r\n#NFTartist #digitalartist #pixelart`;
+                //const post = `New #NFT Art!\r\nhttps://pixelsnek.xian.org/frames/${nftUid}\r\n\r\n#NFTartist #digitalartist #pixelart`;
                 // console.log("post: ", post);
-                await sendTelegramMessage(post);
-                await sendTelegramMessage(gifPost);
+                await sendTweet(postWithGIF);
+                await sendTelegramMessage(postWithGIF);
             }
         } catch (error) {
             console.error('Error parsing message:', error);
