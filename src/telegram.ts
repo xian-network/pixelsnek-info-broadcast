@@ -6,6 +6,7 @@ dotenv.config();
 export const sendTelegramMessage = async (message: string): Promise<boolean> => {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
+  const messageThreadId = process.env.TELEGRAM_THREAD_ID
   
   try {
     const response = await axios.post(
@@ -13,6 +14,7 @@ export const sendTelegramMessage = async (message: string): Promise<boolean> => 
       {
         chat_id: chatId,
         text: message,
+        message_thread_id: messageThreadId,
         parse_mode: 'HTML'
       }
     );
