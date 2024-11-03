@@ -15,7 +15,7 @@ export const sendTelegramMessage = async (message: string): Promise<boolean> => 
         chat_id: chatId,
         text: message,
         message_thread_id: messageThreadId,
-        parse_mode: 'HTML'
+        parse_mode: 'Markdown'
       }
     );
 
