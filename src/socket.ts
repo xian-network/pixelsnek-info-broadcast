@@ -1,6 +1,6 @@
 import WebSocket from 'ws';
 import { process } from './processNodeData.js';
-import { sendTweet } from './x.js';
+// import { sendTweet } from './x.js';
 import { sendTelegramMessage } from './telegram.js';
 import { WEBSOCKET_URL } from './config.js';
 
@@ -35,7 +35,7 @@ export const start = () => {
                 const postWithGIF = `New #NFT Art!\r\n*Title:* ${title}\r\n*Description:* ${description}\r\n[View GIF](https://pixelsnek.xian.org/gif/${uid}.gif)\r\n[View Frames](https://pixelsnek.xian.org/frames/${uid})\r\n\r\n#NFTartist #digitalartist #pixelart`;
                 const post = `New #NFT Art!\r\nhttps://pixelsnek.xian.org/frames/${uid}\r\n\r\n#NFTartist #digitalartist #pixelart`;
                 // console.log("post: ", post);
-                await sendTweet(postWithGIF);
+                // await sendTweet(post);
                 await sendTelegramMessage(postWithGIF);
             }
         } catch (error) {
