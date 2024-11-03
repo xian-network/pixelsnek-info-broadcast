@@ -30,10 +30,10 @@ export const start = () => {
                 return;
             }
             
-            const nftUid = process(message);
-            if (nftUid) {  // Only proceed if nftUid is not null
-                const postWithGIF = `New #NFT Art!\r\nGIF: https://pixelsnek.xian.org/gif/${nftUid}.gif\r\n\r\nhttps://pixelsnek.xian.org/frames/${nftUid}\r\n\r\n#NFTartist #digitalartist #pixelart`;
-                //const post = `New #NFT Art!\r\nhttps://pixelsnek.xian.org/frames/${nftUid}\r\n\r\n#NFTartist #digitalartist #pixelart`;
+            const { uid, title, description } = process(message);
+            if (uid) {  // Only proceed if nftUid is not null
+                const postWithGIF = `New #NFT Art!\r\n*Title:* ${title}\r\n*Description:* ${description}\r\n[View GIF](https://pixelsnek.xian.org/gif/${uid}.gif)\r\n[View Frames](https://pixelsnek.xian.org/frames/${uid})\r\n\r\n#NFTartist #digitalartist #pixelart`;
+                const post = `New #NFT Art!\r\nhttps://pixelsnek.xian.org/frames/${uid}\r\n\r\n#NFTartist #digitalartist #pixelart`;
                 // console.log("post: ", post);
                 await sendTweet(postWithGIF);
                 await sendTelegramMessage(postWithGIF);

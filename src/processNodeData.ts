@@ -17,18 +17,31 @@ const decodeBs64 = (base64: string) => {
 
 const findUid = (txObject: any) => {
     const startsWith = "con_pixel_frames_info.S";
-    const endsWith = "thing";
-    // const startsWith = "currency";
-    // const endsWith = "8dbe45a6";
+    const endsWithThing = "thing";
+    const endsWithName = "name";
+    const endsWithDescription = "description";
+    
+    let uid;
+    let title;
+    let description;
 
     const { state } = txObject;
     for (let stateChange of state){
-        const { key } = stateChange;
-        if (key.startsWith(startsWith) && key.endsWith(endsWith)){
-            return key.split(":")[1];
+        const { key, value } = stateChange;
+        if (key.startsWith(startsWith)){
+            if (key.endsWith(endsWithThing)){
+                uid = key.split(":")[1];
+            }
+            if (key.endsWith(endsWithName)){
+                title = value;
+            }
+            if (key.endsWith(endsWithDescription)){
+                description = value;
+            }
         }
+        
     }
-    return null;
+    return { uid, title, description };
 }
 
 export const process = (hex: string)=>{
